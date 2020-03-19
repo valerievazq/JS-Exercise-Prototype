@@ -45,11 +45,18 @@ this.age = age;
 this.stomach = [];
 }
 
-
+Person.prototype.eat = function(edible){
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible);
+  }
+  else {
+    return false;
+  }
+}
 
 Person.prototype.poop = function(){
   this.stomach = [];
-};
+}
 
 Person.prototype.toString = function(){
   return `${this.name} + ${this.age}`
@@ -82,19 +89,9 @@ Car.prototype.fill = function(gallons){
   return this.tank += gallons;
 }
 
-// Car.prototype.drive = function(distance){
-//   if (distance / this.milesPerGallon >= this.tank){
-//     this.odometer = this.odometer + this.tank + this.milesPerGallon; this.tank = 0;
-//     return `I ran out of fuel at ${this.odometer} miles`
+// Car.prototype.drive = function(distance) {
+    
 //   }
-//   this.tank -= distance / this.milesPerGallon;
-//   this.odometer += distance;
-// }
-
-
-
-
-
 
 
 /*
@@ -105,44 +102,15 @@ Car.prototype.fill = function(gallons){
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby(name, age, favoriteToy,) {
-  this.name = name,
-  this.age = age,
-  this.favoriteToy = favoriteToy,
-  this.play = function () {
-    return `Playing with ${this.favoriteToy}`;
-  };
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
 
-const babyJack = new Baby ({
-  name: 'Jack',
-  age: 1,
-  favoriteToy: 'teddy bear'
-})
+Baby.prototype = Object.create(Person.prototype);
 
-babyJack.play();
-};
-
-
-
-
-// function Baby(babyAttributes) {
-// Person.call(favoriteToy, babyAttributes);
-// this.favoriteToy = babyAttributes.favoriteToy;
-// }
-
-// Baby.prototype.play = function() {
-//   return `Playing with ${this.favoriteToy}`
-// }
-
-// const babyJack = new Baby ({
-//   name: 'Ruth',
-//   age: 1,
-//   favoriteToy: "bear"
-// });
-
-// console.log(babyJack);
-// console.log(babyJack.play())
+Baby.prototype.play = function() {
+  return `Playing with ${this.favoriteToy}`;}
 
 /* 
   TASK 4
