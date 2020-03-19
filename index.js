@@ -40,8 +40,22 @@ Airplane.prototype.land = function () {
 */
 
 function Person(name, age) {
-var stomach = [];
+this.name = name;
+this.age = age;
+this.stomach = [];
 }
+
+
+
+Person.prototype.poop = function(){
+  this.stomach = [];
+};
+
+Person.prototype.toString = function(){
+  return `${this.name} + ${this.age}`
+}
+
+
 
 /*
   TASK 2
@@ -57,9 +71,31 @@ var stomach = [];
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model , milesPerGallon) {
+this.model = model;
+this.milesPerGallon = milesPerGallon;
+this.tank = 0;
+this.odometer = 0
 }
+
+Car.prototype.fill = function(gallons){
+  return this.tank += gallons;
+}
+
+// Car.prototype.drive = function(distance){
+//   if (distance / this.milesPerGallon >= this.tank){
+//     this.odometer = this.odometer + this.tank + this.milesPerGallon; this.tank = 0;
+//     return `I ran out of fuel at ${this.odometer} miles`
+//   }
+//   this.tank -= distance / this.milesPerGallon;
+//   this.odometer += distance;
+// }
+
+
+
+
+
+
 
 /*
   TASK 3
@@ -68,9 +104,45 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
 
+function Baby(name, age, favoriteToy,) {
+  this.name = name,
+  this.age = age,
+  this.favoriteToy = favoriteToy,
+  this.play = function () {
+    return `Playing with ${this.favoriteToy}`;
+  };
 }
+
+const babyJack = new Baby ({
+  name: 'Jack',
+  age: 1,
+  favoriteToy: 'teddy bear'
+})
+
+babyJack.play();
+};
+
+
+
+
+// function Baby(babyAttributes) {
+// Person.call(favoriteToy, babyAttributes);
+// this.favoriteToy = babyAttributes.favoriteToy;
+// }
+
+// Baby.prototype.play = function() {
+//   return `Playing with ${this.favoriteToy}`
+// }
+
+// const babyJack = new Baby ({
+//   name: 'Ruth',
+//   age: 1,
+//   favoriteToy: "bear"
+// });
+
+// console.log(babyJack);
+// console.log(babyJack.play())
 
 /* 
   TASK 4
