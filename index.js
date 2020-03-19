@@ -89,9 +89,18 @@ Car.prototype.fill = function(gallons){
   return this.tank += gallons;
 }
 
-// Car.prototype.drive = function(distance) {
-    
-//   }
+Car.prototype.drive = function (distance){
+  let maxMileage = 200;
+  if (distance < maxMileage) {
+    this.odometer += distance; 
+    this.tank -= distance / this.milesPerGallon;
+  }
+  else {
+    this.odometer += maxMileage;
+    this.tank -= maxMileage / this.milesPerGallon;
+    return `I ran out of fuel at ${this.odometer} miles!`
+  }
+}
 
 
 /*
@@ -116,10 +125,10 @@ Baby.prototype.play = function() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global - will execute outside of the function.
+  2. Implicit - when the object before the dot calls the function. 
+  3. New - when the function is used as a constructor by using the word 'new'
+  4. Explicit - explicitly tell JS to set 'this' to point to a certain value using call, apply or bind toinvoke a function with a specific value for 'this'
 */
 
 
